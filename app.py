@@ -1,10 +1,8 @@
 import json
 import os
 from datetime import datetime
-from PIL import Image
 import pandas as pd
 import streamlit as st
-import matplotlib.pyplot as plt
 
 DATA_FILE = "digital_usage.json"
 
@@ -34,7 +32,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ─── Load Data ─────────────────────────────────────────────
-
 data = load_data()
 today = datetime.now().strftime("%Y-%m-%d")
 if today not in data:
@@ -42,7 +39,11 @@ if today not in data:
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
-# ─── Log Usage Form (Placed at top) ────────────────────────
+# ─── First-Time Welcome ────────────────────────────────────
+if not data[today]:
+    st.info("👋 Welcome! Start by logging your first app usage for today.")
+
+# ─── Log Usage Form ────────────────────────────────────────
 st.markdown("---")
 st.subheader("📥 Log Your App Usage (Today)")
 
@@ -62,7 +63,6 @@ with st.form("log_usage_form"):
             st.rerun()
 
 # ─── Default View for Today ────────────────────────────────
-
 st.markdown("---")
 st.subheader(f"📊 Today's Usage ({today})")
 
@@ -77,7 +77,6 @@ else:
     st.download_button("📥 Download Today's CSV", csv, f"{today}_usage.csv", "text/csv")
 
 # ─── Select Other Date ─────────────────────────────────────
-
 st.markdown("---")
 st.subheader("📅 Check Another Day")
 dates = sorted(data.keys(), reverse=True)
@@ -94,7 +93,6 @@ if selected_date != today:
         st.download_button("📥 Download CSV", csv, f"{selected_date}_usage.csv", "text/csv")
 
 # ─── Manage Today's Data ───────────────────────────────────
-
 st.markdown("---")
 st.subheader("⚙️ Manage Today's Data")
 
