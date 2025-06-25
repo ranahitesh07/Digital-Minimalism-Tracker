@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime
+from PIL import Image
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -22,7 +23,12 @@ def get_dataframe(data, selected_date):
 
 st.set_page_config(page_title="Digital Minimalism Tracker", layout="centered")
 
-st.title("📊 Digital Minimalism Tracker")
+# ─── Logo and Title ─────────────────────────────────────────────
+logo = Image.open("logo.png")
+st.image(logo, width=150)  # Adjust width if needed
+st.markdown("<h1 style='text-align: center; color: #3E64FF;'>Digital Minimalism Tracker</h1>", unsafe_allow_html=True)
+
+# ─── Main Content ─────────────────────────────────────────────
 
 data = load_data()
 dates = sorted(data.keys(), reverse=True)
