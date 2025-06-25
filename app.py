@@ -31,8 +31,17 @@ def get_dataframe(data, date_str):
 # Page layout
 st.set_page_config(page_title="Digital Minimalism Tracker", layout="centered")
 
-st.image("logo.png", width=120)
-st.markdown("<h1 style='text-align: center;'>Digital Minimalism Tracker</h1>", unsafe_allow_html=True)
+# ✅ Centered Logo + Title + Welcome message
+st.markdown(
+    """
+    <div style='text-align: center;'>
+        <img src="https://raw.githubusercontent.com/ranahitesh07/Digital-Minimalism-Tracker/main/logo.png" width="120">
+        <h1 style='margin-bottom: 0;'>Digital Minimalism Tracker</h1>
+        <p style='font-size: 18px; color: gray;'>Track your daily browser usage and build better digital habits.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 data = load_data()
 
