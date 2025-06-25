@@ -24,9 +24,12 @@ def get_dataframe(data, selected_date):
 st.set_page_config(page_title="Digital Minimalism Tracker", layout="centered")
 
 # ─── Logo and Title ─────────────────────────────────────────────
-logo = Image.open("logo.png")
-st.image(logo, width=150)  # Adjust width if needed
-st.markdown("<h1 style='text-align: center; color: #3E64FF;'>Digital Minimalism Tracker</h1>", unsafe_allow_html=True)
+st.markdown("""
+    <div style='text-align: center;'>
+        <img src='https://raw.githubusercontent.com/ranahitesh07/Digital-Minimalism-Tracker/main/logo.png' width='150'>
+        <h1 style='color: #3E64FF;'>Digital Minimalism Tracker</h1>
+    </div>
+""", unsafe_allow_html=True)
 
 # ─── Main Content ─────────────────────────────────────────────
 
