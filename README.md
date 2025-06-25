@@ -1,88 +1,99 @@
 
 <p align="center">
-  <img src="logo.png" alt="Digital Minimalism Tracker Logo" width="200"/>
+  <img src="logo.png" alt="Digital Minimalism Tracker Logo" width="150"/>
 </p>
 
 <h1 align="center">Digital Minimalism Tracker</h1>
 
 <p align="center">
-  ⏱️ A command-line tool to help you reflect on and reduce digital usage through logging, automation, and daily reports.
+  ⏱️ A clean and interactive Streamlit dashboard to manually log and visualize daily screen time.<br>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
 </p>
+
+---
+
+## 🔥 Live Demo
+
+👉 [Launch the Web App](https://digital-minimalism-tracker-alt.streamlit.app/)
 
 ---
 
 ## ✨ Features
 
-- ✅ Manual logging of app usage
-- 🔍 Automatically detects and logs running apps (e.g., browsers, VSCode)
-- 📊 Daily usage summary with bar graph
-- 📁 Data stored in simple JSON format
-- ⌛ Helps you build mindful screen habits
+- ✅ Web-based manual logging of screen time
+- 📊 Visualize app usage per day with charts
+- 💾 Download usage data as CSV
+- ➕ Create empty table for today
+- 🧹 Clear today’s data with one click
+- ☁️ Deployed on Streamlit Cloud
 
 ---
 
-## 📦 Folder Structure
+## 🗂️ Project Structure
 
 ```
 Digital-Minimalism-Tracker/
-├── logger.py              # Logging logic (manual + auto)
-├── main.py                # Entry point CLI
-├── report.py              # Daily usage visualizations
-├── digital_usage.json     # Your tracked data
-├── logo.png               # Project logo
-└── README.md              # This file
+├── app.py                 # Streamlit web dashboard
+├── logger.py              # CLI logging script (optional)
+├── main.py                # CLI interface (optional)
+├── report.py              # CLI graph script (optional)
+├── digital_usage.json     # Screen time data (JSON format)
+├── logo.png               # App logo
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
 ```
 
 ---
 
-## ⚙️ How to Run
+## 🚀 Getting Started
 
-### 1. Clone the repo:
+### 1. Clone this repository
+
 ```bash
 git clone https://github.com/ranahitesh07/Digital-Minimalism-Tracker.git
 cd Digital-Minimalism-Tracker
 ```
 
-### 2. Install required package:
+### 2. Install dependencies
+
 ```bash
-pip install matplotlib psutil
+pip install -r requirements.txt
 ```
 
-### 3. Start the tracker:
+### 3. Run the app locally
+
 ```bash
-python main.py
+streamlit run app.py
 ```
 
 ---
 
-## 🖥 Menu Options
+## 📋 Menu Options (Web Dashboard)
 
-| Option | Action                                           |
-|--------|--------------------------------------------------|
-| 1      | Manually log app usage                           |
-| 2      | View currently running browser/productivity apps |
-| 3      | Start background auto-logger (logs every 5 min)  |
-| 4      | Show today’s usage graph                         |
-| 5      | Exit the program                                 |
+- 🔽 Select date to view usage
+- 📊 View daily app usage in bar chart
+- 📥 Download current day as CSV
+- 📝 Manually log new app + time
+- ➕ Create empty entry for today
+- 🧹 Clear all logs for today
 
 ---
 
-## 🔜 Future Plans
+## 🧠 Ideas for Future
 
-- Weekly summaries and trends
-- Screen time limits and reminders
-- Export data to CSV
-- Web UI with Streamlit
+- Weekly usage trends
+- App categorization (Productive / Distracting)
+- Reminders or usage limits
+- Multi-user tracking with login
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
+MIT License
 
 ---
 
-## 🙌 Inspired By
+## 🙌 Acknowledgement
 
-- Digital Minimalism – by Cal Newport  
-- Tools that promote intentional tech use
+Built to promote mindful digital habits and inspired by Digital Minimalism by Cal Newport.
