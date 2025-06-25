@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -43,3 +44,26 @@ else:
 
         csv = df.to_csv(index=False).encode("utf-8")
         st.download_button("📥 Download CSV", csv, f"{selected_date}_usage.csv", "text/csv")
+
+st.markdown("---")
+st.subheader("📥 Log New App Usage")
+
+with st.form("log_usage_form"):
+    app_name = st.text_input("App Name")
+    minutes = st.number_input("Minutes Spent", min_value=1, step=1)
+    submitted = st.form_submit_button("Submit")
+
+    if submitted:
+        if app_name.strip() == "":
+            st.error("Please enter a valid app name.")
+        else:
+            today = datetime.now().strftime("%Y-%m-%d")
+            if today not in data:
+                data[today] = []
+            data[today].append({"app": app_name.lower(), "minutes": minutes})
+
+            with open(DATA_FILE, "w") as f:
+                json.dump(data, f, indent=4)
+
+            st.success(f"Logged {minutes} min for '{app_name}'")
+            st.rerun()
