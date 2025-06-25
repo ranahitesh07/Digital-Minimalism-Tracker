@@ -32,12 +32,11 @@ Yes, manually — because typing it makes me more aware than background tracking
 
 ## ✨ Features
 
-- ✅ Web-based manual logging of screen time
-- 📊 Visualize app usage per day with charts
-- 💾 Download usage data as CSV
-- ➕ Create empty table for today
-- 🧹 Clear today’s data with one click
-- ☁️ Deployed on Streamlit Cloud
+- 📆 Daily browser app usage tracking
+- 📊 Bar chart visualization for each day
+- 💾 CSV export for individual day
+- 🧹 Option to clear/reset today's data
+- 🔐 Local-first – no cloud data storage
 
 ---
 
@@ -45,17 +44,14 @@ Yes, manually — because typing it makes me more aware than background tracking
 
 ```
 Digital-Minimalism-Tracker/
-├── app.py                 # Streamlit web dashboard
-├── logger.py              # CLI logging script (optional)
-├── main.py                # CLI interface (optional)
-├── report.py              # CLI graph script (optional)
-├── digital_usage.json     # Screen time data (JSON format)
-├── logo.png               # App logo
-├── requirements.txt       # Python dependencies
-└── README.md              # Project documentation
+├── app.py                # Main Streamlit app
+├── logo.png              # Project logo
+├── requirements.txt      # Python dependencies
+├── .gitignore            # Files to ignore (e.g., local data)
+└── README.md             # This file
+
 ```
 
----
 
 ## 🚀 Getting Started
 
@@ -81,10 +77,19 @@ streamlit run app.py
 
 ## 🧠 Ideas for Future
 
-- Weekly usage trends
-- App categorization (Productive / Distracting)
-- Reminders or usage limits
-- Multi-user tracking with login
+ - 📅 Show Weekly & Monthly Stats
+
+      View your total usage over time.
+
+ - 🔥 Track Streaks
+
+      See how many days in a row you’ve logged your data.
+
+ - 🌙 Add Dark Mode
+
+      Make the app easier on the eyes at night.
+
+
 
 ---
 
