@@ -5,7 +5,7 @@ from datetime import datetime
 import pandas as pd
 import pytz
 
-# ✅ Proper IST date (even on Streamlit Cloud)
+# Proper IST date
 IST = pytz.timezone('Asia/Kolkata')
 today = datetime.utcnow().astimezone(IST).date()
 filename = "digital_usage.json"
@@ -28,7 +28,7 @@ def get_dataframe(data, date_str):
 
 st.set_page_config(page_title="Digital Minimalism Tracker", layout="centered")
 
-# ✅ Logo + Title + Message
+# Logo + Title + Message
 st.markdown(
     """
     <div style='text-align: center;'>
@@ -42,7 +42,7 @@ st.markdown(
 
 data = load_data()
 
-# ✅ Add Entry Form
+# Add Entry Form
 with st.form("log_usage"):
     st.subheader(f"📝 Log Your App Usage (Today: {today})")
     app_name = st.text_input("App Name")
@@ -56,7 +56,7 @@ with st.form("log_usage"):
         save_data(data)
         st.success(f"Added {minutes} minutes to '{app_name}'.")
 
-# ✅ Display Today's Usage
+# Display Today's Usage
 st.subheader(f"📊 Today's Usage ({today})")
 df_today = get_dataframe(data, str(today))
 if not df_today.empty:
@@ -65,7 +65,7 @@ if not df_today.empty:
 else:
     st.info("No data logged yet for today.")
 
-# ✅ Manage Today's Data
+# Manage Today's Data
 st.subheader("⚙️ Manage Today's Data")
 col1, col2 = st.columns(2)
 
@@ -83,7 +83,7 @@ with col2:
             save_data(data)
             st.info("Empty table created for today.")
 
-# ✅ Auto Tracking Placeholder
+# Auto Tracking Placeholder
 st.subheader("🔄 Coming Soon: Auto Tracking")
 st.info("You'll soon be able to automatically track app usage without typing manually!")
 
