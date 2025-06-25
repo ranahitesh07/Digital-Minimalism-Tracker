@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="logo.png" alt="Digital Minimalism Tracker Logo" width="150"/>
 </p>
@@ -6,24 +5,24 @@
 <h1 align="center">Digital Minimalism Tracker</h1>
 
 <p align="center">
-  ⏱️ A clean and interactive Streamlit dashboard to manually log and visualize daily screen time.<br>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
+  A simple dashboard I built to manually track how much time I spend on different apps each day.<br>
+  It helps me stay aware of my screen time and avoid distractions.
 </p>
+
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
   <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.10%2B-blue" alt="Python 3.10+"></a>
-  <a href="https://digital-minimalism-tracker-alt.streamlit.app/">
-    <img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Open in Streamlit"/>
-  </a>
-  <a href="https://github.com/ranahitesh07/Digital-Minimalism-Tracker">
-    <img src="https://img.shields.io/github/last-commit/ranahitesh07/Digital-Minimalism-Tracker" alt="Last Commit"/>
-  </a>
-  <a href="https://github.com/ranahitesh07/Digital-Minimalism-Tracker/stargazers">
-    <img src="https://img.shields.io/github/stars/ranahitesh07/Digital-Minimalism-Tracker?style=social" alt="GitHub Stars"/>
-  </a>
+  <a href="https://digital-minimalism-tracker-alt.streamlit.app/"><img src="https://static.streamlit.io/badges/streamlit_badge_black_white.svg" alt="Streamlit App"/></a>
+  <a href="https://github.com/ranahitesh07/Digital-Minimalism-Tracker"><img src="https://img.shields.io/github/last-commit/ranahitesh07/Digital-Minimalism-Tracker" alt="Last Commit"/></a>
 </p>
 
 ---
+
+## 🧠 Why I Made This
+
+I was spending a lot of time online and wanted to be more mindful of it.  
+So I made this app to log how long I use apps like YouTube, Chrome, etc. every day — manually.  
+Yes, manually — because typing it makes me more aware than background tracking.
 
 ## 🔥 Live Demo
 
@@ -79,18 +78,6 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
----
-
-## 📋 Menu Options (Web Dashboard)
-
-- 🔽 Select date to view usage
-- 📊 View daily app usage in bar chart
-- 📥 Download current day as CSV
-- 📝 Manually log new app + time
-- ➕ Create empty entry for today
-- 🧹 Clear all logs for today
-
----
 
 ## 🧠 Ideas for Future
 
@@ -103,10 +90,11 @@ streamlit run app.py
 
 ## 📄 License
 
-MIT License
+MIT LICENSE — feel free to use, modify, or fork this.
 
 ---
 
 ## 🙌 Acknowledgement
 
-Built to promote mindful digital habits and inspired by Digital Minimalism by Cal Newport.
+Inspired by *Digital Minimalism* by Cal Newport.  
+This is mostly a personal habit tracker — but I hope it helps others too.
