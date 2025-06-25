@@ -33,31 +33,18 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# ─── Main Content ─────────────────────────────────────────────
+# ─── Load Data ─────────────────────────────────────────────
 
 data = load_data()
-dates = sorted(data.keys(), reverse=True)
+today = datetime.now().strftime("%Y-%m-%d")
+if today not in data:
+    data[today] = []
+    with open(DATA_FILE, "w") as f:
+        json.dump(data, f, indent=4)
 
-if not dates:
-    st.warning("No usage data available yet.")
-else:
-    selected_date = st.selectbox("Select Date", dates)
-    df = get_dataframe(data, selected_date)
-
-    if df.empty:
-        st.info("No data for the selected day.")
-    else:
-        st.subheader(f"Usage for {selected_date}")
-        st.bar_chart(df.set_index("App"))
-
-        with st.expander("📄 View Table"):
-            st.dataframe(df)
-
-        csv = df.to_csv(index=False).encode("utf-8")
-        st.download_button("📥 Download CSV", csv, f"{selected_date}_usage.csv", "text/csv")
-
+# ─── Log Usage Form (Placed at top) ────────────────────────
 st.markdown("---")
-st.subheader("📥 Log New App Usage")
+st.subheader("📥 Log Your App Usage (Today)")
 
 with st.form("log_usage_form"):
     app_name = st.text_input("App Name")
@@ -68,18 +55,45 @@ with st.form("log_usage_form"):
         if app_name.strip() == "":
             st.error("Please enter a valid app name.")
         else:
-            today = datetime.now().strftime("%Y-%m-%d")
-            if today not in data:
-                data[today] = []
             data[today].append({"app": app_name.lower(), "minutes": minutes})
-
             with open(DATA_FILE, "w") as f:
                 json.dump(data, f, indent=4)
-
             st.success(f"Logged {minutes} min for '{app_name}'")
             st.rerun()
 
-# ─── Manage Today's Data ─────────────────────────────────────
+# ─── Default View for Today ────────────────────────────────
+
+st.markdown("---")
+st.subheader(f"📊 Today's Usage ({today})")
+
+df_today = get_dataframe(data, today)
+if df_today.empty:
+    st.info("No data logged yet for today.")
+else:
+    st.bar_chart(df_today.set_index("App"))
+    with st.expander("📄 View Table"):
+        st.dataframe(df_today)
+    csv = df_today.to_csv(index=False).encode("utf-8")
+    st.download_button("📥 Download Today's CSV", csv, f"{today}_usage.csv", "text/csv")
+
+# ─── Select Other Date ─────────────────────────────────────
+
+st.markdown("---")
+st.subheader("📅 Check Another Day")
+dates = sorted(data.keys(), reverse=True)
+selected_date = st.selectbox("Select Date", dates, index=0)
+if selected_date != today:
+    df = get_dataframe(data, selected_date)
+    if df.empty:
+        st.info("No data for this day.")
+    else:
+        st.bar_chart(df.set_index("App"))
+        with st.expander("📄 View Table"):
+            st.dataframe(df)
+        csv = df.to_csv(index=False).encode("utf-8")
+        st.download_button("📥 Download CSV", csv, f"{selected_date}_usage.csv", "text/csv")
+
+# ─── Manage Today's Data ───────────────────────────────────
 
 st.markdown("---")
 st.subheader("⚙️ Manage Today's Data")
@@ -88,19 +102,14 @@ col1, col2 = st.columns(2)
 
 with col1:
     if st.button("🧹 Clear Today's Data"):
-        today = datetime.now().strftime("%Y-%m-%d")
-        if today in data:
-            data[today] = []
-            with open(DATA_FILE, "w") as f:
-                json.dump(data, f, indent=4)
-            st.success("Today's data cleared.")
-            st.rerun()
-        else:
-            st.info("No data exists for today.")
+        data[today] = []
+        with open(DATA_FILE, "w") as f:
+            json.dump(data, f, indent=4)
+        st.success("Today's data cleared.")
+        st.rerun()
 
 with col2:
     if st.button("➕ Create Empty Table for Today"):
-        today = datetime.now().strftime("%Y-%m-%d")
         if today not in data:
             data[today] = []
             with open(DATA_FILE, "w") as f:
