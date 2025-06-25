@@ -76,3 +76,34 @@ with st.form("log_usage_form"):
 
             st.success(f"Logged {minutes} min for '{app_name}'")
             st.rerun()
+
+# ─── Manage Today's Data ─────────────────────────────────────
+
+st.markdown("---")
+st.subheader("⚙️ Manage Today's Data")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("🧹 Clear Today's Data"):
+        today = datetime.now().strftime("%Y-%m-%d")
+        if today in data:
+            data[today] = []
+            with open(DATA_FILE, "w") as f:
+                json.dump(data, f, indent=4)
+            st.success("Today's data cleared.")
+            st.rerun()
+        else:
+            st.info("No data exists for today.")
+
+with col2:
+    if st.button("➕ Create Empty Table for Today"):
+        today = datetime.now().strftime("%Y-%m-%d")
+        if today not in data:
+            data[today] = []
+            with open(DATA_FILE, "w") as f:
+                json.dump(data, f, indent=4)
+            st.success("Empty entry created for today.")
+            st.rerun()
+        else:
+            st.warning("Today's entry already exists.")
