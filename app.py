@@ -19,6 +19,8 @@ def get_dataframe(data, selected_date):
         return pd.DataFrame(columns=["App", "Minutes"])
     day_data = data[selected_date]
     df = pd.DataFrame(day_data)
+    if df.empty or "app" not in df.columns or "minutes" not in df.columns:
+        return pd.DataFrame(columns=["App", "Minutes"])
     return df.groupby("app")["minutes"].sum().reset_index().rename(columns={"app": "App", "minutes": "Minutes"})
 
 st.set_page_config(page_title="Digital Minimalism Tracker", layout="centered")
